@@ -7,11 +7,11 @@
     <title>VCMA MTJ visualizer</title>
   </head>
   <body>
-    <p>Give an initial direction for M and a constant pegged direction for H_eff. You can watch M precess when you hit "start". </p>
+    <p>Give an initial direction for M and a constant pegged direction for H_eff. You can watch M precess when you refresh the page. </p>
 
     <p>More features to come. Ideally, I'd like to have VCMA simulated instead of just the LLG equation. </p>
 
-    Mx, My, Mz (will be normalized to have magnitude 1).
+    <!--Mx, My, Mz (will be normalized to have magnitude 1).
     <input type="text" id="Mx" value="0.0">
     <input type="text" id="My" value="0.707106781">
     <input type="text" id="Mz" value="0.707106781">
@@ -22,9 +22,10 @@
     <input type="text" id="Hx" value="0.0">
     <input type="text" id="Hy" value="1.0">
     <input type="text" id="Hz" value="0.0">
-    <button> Set H vector position </button>
+    <button> Set H vector position </button>-->
     <br/>
-
+    <br/>
+    <p id="time_paragraph"> </p>
     <canvas id="c" width="1024" height="1024"></canvas>
   </body>
   <script type="module" src="sim.js"> </script>

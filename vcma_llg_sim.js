@@ -44,11 +44,11 @@ function scalar_multiply(scalar, a)
 export default class vcma_mtj_sim {
     constructor() {
         // ======= state variables =======
-        this._M = new Array(-0.7071, 0.7071, 0.0);
+        this._M = new Array(-0.9, 0.1, 0.0);
 
         // ultimately, this will be removed once we can properly simulate H_eff. For now, we have a
         // pure LLG simulation without any of the interesting bits introduced by VCMA via H_eff.
-        this.forced_H_eff = new Array(10, 0, 0);
+        this.forced_H_eff = new Array(2, 0, 0);
 
         // ======= simulation constants; base time unit is picoseconds =======
         // this is the gyromagnetic ratio of an electron. Units are radian / (Tesla Seconds), but
@@ -61,10 +61,12 @@ export default class vcma_mtj_sim {
 
         // Permeability of CoFeB film guesstimated from "Permeability Measurements of Magnetic Thin
         // Film with Microstrip Probe"
-        this.magnetic_permeability = 1.257e-6;
+        // this.magnetic_permeability = 1.257e-6;
+        this.magnetic_permeability = 1;
 
         // in picoseconds
-        this.timestep = 1;
+        this.timestep = 0.001;
+        this.timeprogress = 0;
     }
 
     get M() {
@@ -116,5 +118,7 @@ export default class vcma_mtj_sim {
                 this._M[i] /= Math.sqrt(norm2);
             }
         }
+
+        this.timeprogress += picoseconds;
     }
 }

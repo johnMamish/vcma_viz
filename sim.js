@@ -19,9 +19,8 @@ function normalize_3vector_textfields(names)
 function draw_vector(scene, c, vect)
 {
     var direction = new THREE.Vector3(vect[0], vect[1], vect[2]);
-    direction.normalize();
     var origin = new THREE.Vector3(0.0, 0.0, 0.0);
-    var length = 1;
+    var length = direction.length();
     var arrow = new THREE.ArrowHelper(direction, origin, length, c);
     scene.add(arrow);
 }
@@ -44,8 +43,8 @@ function main() {
     var prevtime = 0;
     function render(time) {
         var dt = time - prevtime;
-        // step simulation; 0.002 picoseconds / millisecond
-        sim.step_simulation(dt * 1000);
+        // step simulation; 1 nanosecond / millisecond
+        sim.step_simulation(dt * 0.03);
         prevtime = time;
 
         console.log("M = " + sim.M);
@@ -72,6 +71,8 @@ function main() {
         draw_vector(myscene, "#00ff00", sim.H_eff);
 
 	renderer.render(myscene, camera);
+
+        document.getElementById("time_paragraph").innerHTML = Math.round(sim.timeprogress) + " picoseconds";
 	requestAnimationFrame(render);
     }
     requestAnimationFrame(render);
